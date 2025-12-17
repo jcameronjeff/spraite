@@ -1,0 +1,35 @@
+{
+  "name": "wizard",
+  "character": {
+    "description": "An elderly wizard with a long beard, pointed hat, and magical staff",
+    "details": "Purple robes with star patterns, wooden staff with glowing crystal, long white beard, half-moon spectacles"
+  },
+  "frameWidth": 64,
+  "frameHeight": 64,
+  "animations": {
+    "idle": {
+      "frames": 4,
+      "fps": 6
+    },
+    "walk": {
+      "frames": 6,
+      "fps": 8
+    },
+    "cast": {
+      "frames": 6,
+      "fps": 10
+    },
+    "attack": {
+      "frames": 4,
+      "fps": 10
+    },
+    "hurt": {
+      "frames": 2,
+      "fps": 8
+    },
+    "death": {
+      "frames": 4,
+      "fps": 6
+    }
+  }
+}

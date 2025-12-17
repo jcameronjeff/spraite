@@ -1,0 +1,35 @@
+{
+  "name": "pirate",
+  "character": {
+    "description": "A cartoon pirate captain with a tricorn hat, eyepatch, and cutlass",
+    "details": "Blue coat with gold buttons, brown boots, red sash around waist, bushy black beard"
+  },
+  "frameWidth": 64,
+  "frameHeight": 64,
+  "animations": {
+    "idle": {
+      "frames": 4,
+      "fps": 8
+    },
+    "walk": {
+      "frames": 6,
+      "fps": 10
+    },
+    "run": {
+      "frames": 6,
+      "fps": 12
+    },
+    "attack": {
+      "frames": 4,
+      "fps": 12
+    },
+    "hurt": {
+      "frames": 2,
+      "fps": 8
+    },
+    "death": {
+      "frames": 4,
+      "fps": 6
+    }
+  }
+}
