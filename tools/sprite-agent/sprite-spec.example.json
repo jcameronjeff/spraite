@@ -1,0 +1,61 @@
+{
+  "version": "1.0",
+  "sprites": [
+    {
+      "name": "character-idle",
+      "description": "Character idle animation",
+      "prompt": "pixel art character standing idle, transparent background, 8 frames animation strip, 64x64 pixels per frame, side view, fantasy RPG style",
+      "frames": 8,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameRate": 12,
+      "tags": ["character", "idle", "animation"]
+    },
+    {
+      "name": "character-walk",
+      "description": "Character walking animation",
+      "prompt": "pixel art character walking, transparent background, 12 frames animation strip, 64x64 pixels per frame, side view, fantasy RPG style, smooth walk cycle",
+      "frames": 12,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameRate": 16,
+      "tags": ["character", "walk", "animation"]
+    },
+    {
+      "name": "character-attack",
+      "description": "Character attack animation",
+      "prompt": "pixel art character attacking with sword, transparent background, 6 frames animation strip, 64x64 pixels per frame, side view, fantasy RPG style, dynamic action",
+      "frames": 6,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameRate": 18,
+      "tags": ["character", "attack", "animation"]
+    }
+  ],
+  "settings": {
+    "outputFormat": "png",
+    "alphaChannel": true,
+    "backgroundColor": "transparent",
+    "aiModel": "stable-diffusion-xl",
+    "quality": "high",
+    "seed": null
+  },
+  "pipeline": {
+    "validate": {
+      "enabled": true,
+      "minTransparency": 0.3,
+      "requireTrueAlpha": true
+    },
+    "slice": {
+      "enabled": true,
+      "padding": 0
+    },
+    "pack": {
+      "enabled": true,
+      "padding": 2,
+      "maxAtlasSize": 4096,
+      "powerOfTwo": true,
+      "format": "phaser3"
+    }
+  }
+}

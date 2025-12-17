@@ -1,0 +1,33 @@
+{
+  "name": "spraite",
+  "version": "0.1.0",
+  "description": "AI Game Sprite Generation with Phaser",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src/**/*.js",
+    "sprite:generate": "node scripts/generate-sprites.js",
+    "sprite:validate": "node scripts/validate-sprites.js",
+    "sprite:slice": "node scripts/slice-sprites.js",
+    "sprite:pack": "node scripts/pack-sprites.js",
+    "sprite:pipeline": "npm run sprite:generate && npm run sprite:validate && npm run sprite:slice && npm run sprite:pack"
+  },
+  "keywords": [
+    "phaser",
+    "game",
+    "sprites",
+    "ai",
+    "generation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "phaser": "^3.70.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
