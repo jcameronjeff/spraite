@@ -1,0 +1,35 @@
+{
+  "name": "knight",
+  "character": {
+    "description": "A medieval knight in full plate armor with a sword and shield",
+    "details": "Silver armor with blue tabard, plumed helmet, large kite shield with lion emblem"
+  },
+  "frameWidth": 64,
+  "frameHeight": 64,
+  "animations": {
+    "idle": {
+      "frames": 4,
+      "fps": 8
+    },
+    "walk": {
+      "frames": 8,
+      "fps": 10
+    },
+    "run": {
+      "frames": 8,
+      "fps": 14
+    },
+    "attack": {
+      "frames": 6,
+      "fps": 14
+    },
+    "block": {
+      "frames": 2,
+      "fps": 8
+    },
+    "hurt": {
+      "frames": 2,
+      "fps": 8
+    }
+  }
+}
