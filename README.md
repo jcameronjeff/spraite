@@ -188,6 +188,55 @@ Failed validations trigger automatic retry with adjusted prompts.
 | `RETRY_DELAY_MS` | 2000 | Delay between retries |
 | `OUTPUT_DIR` | assets/generated | Output directory |
 
+## GitHub Actions
+
+Spraite includes workflows for CI/CD integration.
+
+### Available Workflows
+
+| Workflow | Trigger | Description |
+|----------|---------|-------------|
+| **CI** | Push/PR to main | Tests on Node 18/20/22, validates specs |
+| **Validate Specs** | Push/PR (specs changed) | Validates all spec files |
+| **Generate Sprites** | Manual dispatch | Generate sprites from a single spec |
+| **Generate All** | Manual dispatch | Generate sprites from all specs |
+
+### Setup
+
+1. Add your OpenAI API key as a repository secret:
+   - Go to Settings → Secrets and variables → Actions
+   - Create secret: `OPENAI_API_KEY`
+
+2. Workflows are ready to use from the Actions tab.
+
+### Manual Generation
+
+Trigger sprite generation from the GitHub Actions tab:
+
+1. Go to **Actions** → **Generate Sprites**
+2. Click **Run workflow**
+3. Enter the spec file path (e.g., `specs/example-pirate.json`)
+4. Optionally enable artifact upload
+5. Click **Run workflow**
+
+Generated sprites are uploaded as artifacts (downloadable for 30 days).
+
+### Generate All Sprites
+
+1. Go to **Actions** → **Generate All Sprites**
+2. Click **Run workflow**
+3. Optionally enable "Commit generated assets" to auto-commit results
+4. Click **Run workflow**
+
+### Scheduled Generation
+
+To enable automatic weekly regeneration, uncomment the schedule trigger in `.github/workflows/generate-all.yml`:
+
+```yaml
+schedule:
+  - cron: '0 0 * * 0'  # Every Sunday at midnight
+```
+
 ## Project Structure
 
 ```

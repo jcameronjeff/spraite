@@ -1,0 +1,48 @@
+name: Validate Specs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'specs/**/*.json'
+      - 'src/**/*.js'
+      - 'package.json'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'specs/**/*.json'
+      - 'src/**/*.js'
+      - 'package.json'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate all specs
+        run: |
+          echo "Validating sprite specifications..."
+          for spec in specs/*.json; do
+            if [ -f "$spec" ]; then
+              echo "Validating: $spec"
+              npx spraite validate "$spec"
+            fi
+          done
+          echo "All specs validated successfully!"
+
+      - name: Lint check (syntax validation)
+        run: |
+          node --check src/*.js
+          node --check src/**/*.js

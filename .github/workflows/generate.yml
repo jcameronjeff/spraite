@@ -1,0 +1,62 @@
+name: Generate Sprites
+
+on:
+  # Manual trigger with inputs
+  workflow_dispatch:
+    inputs:
+      spec_file:
+        description: 'Spec file to generate (e.g., specs/example-pirate.json)'
+        required: true
+        default: 'specs/example-pirate.json'
+        type: string
+      upload_artifacts:
+        description: 'Upload generated sprites as artifacts'
+        required: false
+        default: true
+        type: boolean
+
+  # Trigger on spec file changes (optional - uncomment to enable)
+  # push:
+  #   branches: [main]
+  #   paths:
+  #     - 'specs/**/*.json'
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate spec before generation
+        run: npx spraite validate "${{ github.event.inputs.spec_file }}"
+
+      - name: Generate sprites
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          echo "Generating sprites from: ${{ github.event.inputs.spec_file }}"
+          npx spraite generate "${{ github.event.inputs.spec_file }}" --verbose
+
+      - name: List generated files
+        run: |
+          echo "Generated files:"
+          find assets/generated -type f -name "*.png" -o -name "*.json" | head -20
+
+      - name: Upload sprites as artifact
+        if: ${{ github.event.inputs.upload_artifacts == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-sprites
+          path: assets/generated/
+          retention-days: 30
